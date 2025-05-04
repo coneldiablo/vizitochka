@@ -175,3 +175,56 @@
       -0.025em -0.05em 0 rgba(255,255,255,.75);
   }
 }
+
+@media (max-width: 640px) {
+  body {
+    overflow-x: hidden;
+  }
+  .pixel-border {
+    border-width: 2px;
+    box-shadow:
+      0 0 0 1px #222,
+      2px 2px 0 0 #fff,
+      4px 4px 0 0 #222;
+  }
+  .pixel-shadow {
+    box-shadow:
+      0 0 0 1px #fff,
+      2px 2px 0 0 #222,
+      4px 4px 0 0 #fff,
+      6px 6px 0 0 #222;
+  }
+  .pixel-card-gradient {
+    opacity: 0.12;
+  }
+  .glitch-text {
+    font-size: 1.1em !important;
+    word-break: break-word;
+  }
+  .typing-text {
+    font-size: 1em !important;
+    word-break: break-word;
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+  .pixel-section-animate, .pixel-border, .pixel-shadow {
+    max-width: 100vw;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+  input, button {
+    font-size: 1em !important;
+    min-height: 40px;
+  }
+  .pixel-list-animate {
+    min-height: 36px;
+    font-size: 0.95em;
+  }
+  .pixel-title-glow {
+    font-size: 1em;
+  }
+  .pixel-gradient-bg {
+    padding: 0.5em 0.5em;
+  }
+}

@@ -224,7 +224,9 @@ function App() {
       ) : (
         <>
           {/* Hero Section */}
-          <div className="relative h-screen flex items-center justify-center overflow-hidden">
+          <div className="relative min-h-screen max-h-screen sm:h-screen flex flex-col items-center justify-center overflow-y-auto px-2 sm:px-0 w-full max-w-full"
+            style={{ touchAction: 'pan-y' }}
+          >
             {/* Dynamic Background: Matrix Rain, Pixel Stars, Ascii Rain */}
             {effect === 'matrix' && <MatrixRain show />}
             {effect === 'ascii' && <AsciiRain show />}
@@ -236,32 +238,32 @@ function App() {
             {/* Self-Destruct Easter Egg */}
             {showSelfDestruct && <SelfDestruct />}
             {/* Main Content */}
-            <div className={`relative z-10 text-center transform transition-all duration-1000 ${
+            <div className={`relative z-10 text-center transform transition-all duration-1000 w-full max-w-2xl mx-auto ${
               isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
             }`}>
-              <h1 className="text-7xl font-bold mb-10 glitch-text tracking-wider">
+              <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-7xl font-bold mb-4 sm:mb-10 glitch-text tracking-wider break-words max-w-full">
                 cvzpolq
               </h1>
-              <div className="text-3xl mb-4 typing-text px-4 mt-4">Abdusalamov Magomed</div>
-              
-              <div className="inline-block relative group mb-12">
+              <div className="text-base xs:text-lg sm:text-3xl mb-2 sm:mb-4 typing-text px-1 xs:px-2 sm:px-4 mt-2 sm:mt-4 break-words max-w-full">Abdusalamov Magomed</div>
+              <div className="inline-block relative group mb-6 sm:mb-12 w-full max-w-xs sm:max-w-none">
                 <div className="absolute -inset-1 bg-white opacity-20 blur group-hover:opacity-30 transition-opacity duration-500 rounded-lg"></div>
                 <div
-                  className="relative bg-black px-6 py-3 rounded-lg border border-white/20 flex items-center space-x-3 cursor-pointer"
+                  className="relative bg-black px-3 sm:px-6 py-2 sm:py-3 rounded-lg border border-white/20 flex items-center space-x-2 sm:space-x-3 cursor-pointer w-full justify-center"
                   onClick={handleSecretClick}
                   tabIndex={0}
+                  style={{ minHeight: 44 }}
                 >
                   <Terminal className="w-5 h-5" />
-                  <span className="text-xl tracking-wide">
+                  <span className="text-sm sm:text-xl tracking-wide">
                     {inputActive ? (
                       <input
                         autoFocus
-                        className="bg-transparent border-b border-white outline-none text-white font-pixel px-2 w-32"
+                        className="bg-transparent border-b border-white outline-none text-white font-pixel px-2 w-20 sm:w-32"
                         value={inputValue}
                         onChange={handleInputChange}
                         onKeyDown={handleInputKeyDown}
                         placeholder="секрет..."
-                        style={{ fontSize: '1.1rem', letterSpacing: '0.05em' }}
+                        style={{ fontSize: '1em', letterSpacing: '0.05em' }}
                       />
                     ) : (
                       'think-asta team member'
@@ -274,37 +276,28 @@ function App() {
           </div>
 
           {/* Skills Section */}
-          <section className="py-20 px-4">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold mb-12 border-b border-white pb-4 glitch-text">
+          <section className="py-6 sm:py-20 px-1 sm:px-4">
+            <div className="max-w-full sm:max-w-4xl mx-auto">
+              <h2 className="text-lg sm:text-3xl font-bold mb-4 sm:mb-12 border-b border-white pb-2 sm:pb-4 glitch-text">
                 Frontend Developer
               </h2>
-              <div className="grid md:grid-cols-2 gap-12">
-                <div className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-12">
+                <div className="space-y-3 sm:space-y-6">
                   {/* Core Technologies */}
-                  <div className="relative group pixel-gradient-bg pixel-border py-8 px-4 mb-8 pixel-section-animate">
+                  <div className="relative group pixel-gradient-bg pixel-border py-3 sm:py-8 px-1 sm:px-4 mb-3 sm:mb-8 pixel-section-animate">
                     <div className="absolute inset-0 pointer-events-none z-0">
                       <CodeRainBg />
                     </div>
                     <div className="relative z-10">
-                      <h3 className="text-xl font-bold mb-6 flex items-center glitch-text pixel-title-glow">
-                        <Code2 className="w-5 h-5 mr-2" />
+                      <h3 className="text-xs sm:text-xl font-bold mb-2 sm:mb-6 flex items-center glitch-text pixel-title-glow">
+                        <Code2 className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                         Core Technologies
                       </h3>
                       {/* Мини-карточки скиллов */}
                       <div
-                        className="
-                          grid
-                          grid-cols-1
-                          sm:grid-cols-2
-                          md:grid-cols-3
-                          gap-8
-                          justify-items-center
-                          items-start
-                          mt-2
-                        "
+                        className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-8 justify-items-center items-start mt-2"
                       >
-                        {Object.entries(skills).map(([skill, progress], idx) => {
+                        {Object.entries(skills).map(([skill], idx) => {
                           const { label, desc, iconUrl } = skillDetails[skill];
                           return (
                             <div
@@ -312,7 +305,7 @@ function App() {
                               className={`
                                 group/card relative flex flex-col items-center justify-center
                                 bg-[#181818] pixel-border pixel-shadow
-                                w-28 min-h-[110px] h-28
+                                w-20 sm:w-28 min-h-[70px] sm:min-h-[110px] h-20 sm:h-28
                                 transition-all duration-300
                                 hover:z-10
                                 hover:scale-110 hover:shadow-2xl hover:border-white/30
@@ -331,16 +324,16 @@ function App() {
                               <img
                                 src={iconUrl}
                                 alt={label}
-                                className="w-9 h-9 mb-1 transition-all duration-300 group-hover/card:w-12 group-hover/card:h-12"
+                                className="w-6 h-6 sm:w-9 sm:h-9 mb-1 transition-all duration-300 group-hover/card:w-8 group-hover/card:h-8 sm:group-hover/card:w-12 sm:group-hover/card:h-12"
                                 style={{
                                   filter: 'drop-shadow(0 0 2px #fff)',
                                   zIndex: 1,
                                 }}
                               />
                               <span
-                                className="text-xs font-bold uppercase tracking-wider text-white text-center px-1"
+                                className="text-[9px] sm:text-xs font-bold uppercase tracking-wider text-white text-center px-1"
                                 style={{
-                                  maxWidth: '80px',
+                                  maxWidth: '70px',
                                   overflow: 'hidden',
                                   textOverflow: 'ellipsis',
                                   whiteSpace: 'nowrap',
@@ -352,12 +345,12 @@ function App() {
                               >
                                 {label}
                               </span>
-                              <span className="text-xs text-white/70" style={{ zIndex: 1 }}>{animatedProgress[skill] ?? 0}%</span>
+                              <span className="text-[9px] sm:text-xs text-white/70" style={{ zIndex: 1 }}>{animatedProgress[skill] ?? 0}%</span>
                               {/* Описание появляется при наведении */}
                               <div
                                 className={`
                                   absolute left-1/2 top-full mt-2 -translate-x-1/2
-                                  w-48 p-3 rounded bg-black/90 border border-white/20 text-xs text-white/80
+                                  w-32 sm:w-48 p-2 sm:p-3 rounded bg-black/90 border border-white/20 text-[9px] sm:text-xs text-white/80
                                   opacity-0 pointer-events-none
                                   group-hover/card:opacity-100 group-hover/card:pointer-events-auto
                                   transition-all duration-300
@@ -378,46 +371,46 @@ function App() {
                     </div>
                   </div>
                   {/* Build & Infrastructure */}
-                  <div className="relative group pixel-gradient-bg pixel-border py-8 px-4 mb-8 pixel-section-animate">
+                  <div className="relative group pixel-gradient-bg pixel-border py-3 sm:py-8 px-1 sm:px-4 mb-3 sm:mb-8 pixel-section-animate">
                     <div className="absolute inset-0 pointer-events-none z-0">
                       <CodeRainBg />
                     </div>
                     <div className="relative z-10">
-                      <h3 className="text-xl font-bold mb-4 glitch-text pixel-title-glow">Build & Infrastructure</h3>
-                      <ul className="space-y-2">
-                        <li className="pixel-border bg-[#181818] px-4 py-2 pixel-list-animate">Vite / Webpack</li>
-                        <li className="pixel-border bg-[#181818] px-4 py-2 pixel-list-animate">ESLint / Prettier</li>
-                        <li className="pixel-border bg-[#181818] px-4 py-2 pixel-list-animate">Babel / PostCSS</li>
+                      <h3 className="text-xs sm:text-xl font-bold mb-2 sm:mb-4 glitch-text pixel-title-glow">Build & Infrastructure</h3>
+                      <ul className="space-y-1 sm:space-y-2">
+                        <li className="pixel-border bg-[#181818] px-2 sm:px-4 py-1 sm:py-2 pixel-list-animate text-xs sm:text-base">Vite / Webpack</li>
+                        <li className="pixel-border bg-[#181818] px-2 sm:px-4 py-1 sm:py-2 pixel-list-animate text-xs sm:text-base">ESLint / Prettier</li>
+                        <li className="pixel-border bg-[#181818] px-2 sm:px-4 py-1 sm:py-2 pixel-list-animate text-xs sm:text-base">Babel / PostCSS</li>
                       </ul>
                     </div>
                   </div>
                 </div>
-                <div className="space-y-6">
+                <div className="space-y-3 sm:space-y-6">
                   {/* Testing & Security */}
-                  <div className="relative group pixel-gradient-bg pixel-border py-8 px-4 mb-8 pixel-section-animate">
+                  <div className="relative group pixel-gradient-bg pixel-border py-3 sm:py-8 px-1 sm:px-4 mb-3 sm:mb-8 pixel-section-animate">
                     <div className="absolute inset-0 pointer-events-none z-0">
                       <CodeRainBg />
                     </div>
                     <div className="relative z-10">
-                      <h3 className="text-xl font-bold mb-4 glitch-text pixel-title-glow">Testing & Security</h3>
-                      <ul className="space-y-2">
-                        <li className="pixel-border bg-[#181818] px-4 py-2 pixel-list-animate">Jest / Vitest</li>
-                        <li className="pixel-border bg-[#181818] px-4 py-2 pixel-list-animate">Playwright / Cypress</li>
-                        <li className="pixel-border bg-[#181818] px-4 py-2 pixel-list-animate">Frontend Security</li>
+                      <h3 className="text-xs sm:text-xl font-bold mb-2 sm:mb-4 glitch-text pixel-title-glow">Testing & Security</h3>
+                      <ul className="space-y-1 sm:space-y-2">
+                        <li className="pixel-border bg-[#181818] px-2 sm:px-4 py-1 sm:py-2 pixel-list-animate text-xs sm:text-base">Jest / Vitest</li>
+                        <li className="pixel-border bg-[#181818] px-2 sm:px-4 py-1 sm:py-2 pixel-list-animate text-xs sm:text-base">Playwright / Cypress</li>
+                        <li className="pixel-border bg-[#181818] px-2 sm:px-4 py-1 sm:py-2 pixel-list-animate text-xs sm:text-base">Frontend Security</li>
                       </ul>
                     </div>
                   </div>
                   {/* DevOps & Deployment */}
-                  <div className="relative group pixel-gradient-bg pixel-border py-8 px-4 mb-8 pixel-section-animate">
+                  <div className="relative group pixel-gradient-bg pixel-border py-3 sm:py-8 px-1 sm:px-4 mb-3 sm:mb-8 pixel-section-animate">
                     <div className="absolute inset-0 pointer-events-none z-0">
                       <CodeRainBg />
                     </div>
                     <div className="relative z-10">
-                      <h3 className="text-xl font-bold mb-4 glitch-text pixel-title-glow">DevOps & Deployment</h3>
-                      <ul className="space-y-2">
-                        <li className="pixel-border bg-[#181818] px-4 py-2 pixel-list-animate">GitHub Actions</li>
-                        <li className="pixel-border bg-[#181818] px-4 py-2 pixel-list-animate">Docker</li>
-                        <li className="pixel-border bg-[#181818] px-4 py-2 pixel-list-animate">Firebase / Vercel / Netlify</li>
+                      <h3 className="text-xs sm:text-xl font-bold mb-2 sm:mb-4 glitch-text pixel-title-glow">DevOps & Deployment</h3>
+                      <ul className="space-y-1 sm:space-y-2">
+                        <li className="pixel-border bg-[#181818] px-2 sm:px-4 py-1 sm:py-2 pixel-list-animate text-xs sm:text-base">GitHub Actions</li>
+                        <li className="pixel-border bg-[#181818] px-2 sm:px-4 py-1 sm:py-2 pixel-list-animate text-xs sm:text-base">Docker</li>
+                        <li className="pixel-border bg-[#181818] px-2 sm:px-4 py-1 sm:py-2 pixel-list-animate text-xs sm:text-base">Firebase / Vercel / Netlify</li>
                       </ul>
                     </div>
                   </div>
@@ -426,9 +419,8 @@ function App() {
             </div>
           </section>
 
-          
-          <footer className="py-8 px-4 border-t border-white/20">
-            <div className="max-w-4xl mx-auto flex justify-center space-x-6">
+          <footer className="py-4 sm:py-8 px-2 sm:px-4 border-t border-white/20">
+            <div className="max-w-full sm:max-w-4xl mx-auto flex flex-col sm:flex-row justify-center items-center sm:space-x-6 space-y-3 sm:space-y-0">
               <a href="https://github.com/coneldiablo" className="hover:text-gray-400 transition-colors">
                 <Github className="w-6 h-6" />
               </a>
@@ -976,6 +968,7 @@ function CodeRainBg() {
 
 function SelfDestruct() {
   const [hide, setHide] = useState(false);
+
   const [explosions, setExplosions] = useState<any[]>([]);
   const [errors, setErrors] = useState<any[]>([]);
   useEffect(() => {
@@ -1134,7 +1127,7 @@ function SelfDestruct() {
           100% { opacity: 0.18; }
         }
         @keyframes popin {
-          0% { opacity: 0; transform: scale(0.7) rotate(-10deg); }
+           0% { opacity: 0; transform: scale(0.7) rotate(-10deg); }
           100% { opacity: 1; transform: scale(1) rotate(0deg); }
         }
       `}</style>
